@@ -79,4 +79,30 @@ sudo apt-get upgrade -y
 
 # sudo apt-get install mongodb-org=3.2.20 -y
 sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+# sudo apt-get install mongodb-org=3.2.20 -y
+sudo apt-get install -y mongodb-org=3.2.20 mongodb-org-server=3.2.20 mongodb-org-shell=3.2.20 mongodb-org-mongos=3.2.20 mongodb-org-tools=3.2.20
+
+# if mongo is is set up correctly these will be successful
+sudo systemctl restart mongod
+sudo systemctl enable mongod
 ```
+- `sudo systemctl status mongodb`
+- `sudo systemctl restart mongodb`
+- `sudo systemctl enable mongodb`
+- `sudo systemctl status mongodb`
+- Change the mongod.conf 
+- allow ip 0.0.0.0
+- `cd /etc`
+- `sudo nano mongod.conf`
+```net:
+  port: 27017
+  bindIp: 0.0.0.0
+  ```
+- `sudo systemctl restart mongodb`
+- `sudo systemctl enable mongodb`
+- `sudo systemctl status mongodb`
+  - back to app machine 
+  - create an env var called `DB_HOST=mongodb://192.168.10.150:27017/posts`
+  - printenv DB_HOST
+- `npm start`  
+- `http://192.168.10.100:3000/posts`
